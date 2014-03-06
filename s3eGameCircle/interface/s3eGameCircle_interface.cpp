@@ -5,37 +5,32 @@
 
 #include "s3eExt.h"
 #include "IwDebug.h"
+#include "s3eDevice.h"
+
 
 #include "s3eGameCircle.h"
+
+
+#ifndef S3E_EXT_SKIP_LOADER_CALL_LOCK
+// For MIPs (and WP8) platform we do not have asm code for stack switching
+// implemented. So we make LoaderCallStart call manually to set GlobalLock
+#if defined __mips || defined S3E_ANDROID_X86 || (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP))
+#define LOADER_CALL_LOCK
+#endif
+#endif
 
 /**
  * Definitions for functions types passed to/from s3eExt interface
  */
 typedef  s3eResult(*s3eGameCircleRegister_t)(s3eGameCircleCallback cbid, s3eCallback fn, void* userData);
 typedef  s3eResult(*s3eGameCircleUnRegister_t)(s3eGameCircleCallback cbid, s3eCallback fn);
-typedef       void(*s3eGameCircleInitialize_t)(bool useAchievements, bool useWhispersync, bool useLeaderboards, bool firsRun);
-typedef s3eGameCircleStatus(*s3eGameCircleGetStatus_t)();
-typedef       bool(*s3eGameCircleIsReady_t)();
-typedef       void(*s3eGameCircleGetPlayerAlias_t)(const char* developerPayload);
+typedef       void(*s3eGameCircleInitialize_t)(bool useAchievements, bool useLeaderboards);
+typedef       bool(*s3eGameCircleIsInitialized_t)();
 typedef       void(*s3eGameCircleShowAchievementsOverlay_t)();
 typedef       void(*s3eGameCircleUpdateAchievement_t)(const char* achievementId, float percentComplete, const char* developerPayload);
-typedef       void(*s3eGameCircleResetAchievements_t)();
-typedef       void(*s3eGameCircleResetAchievement_t)(const char* achievementId, const char* developerPayload);
-typedef       void(*s3eGameCircleSetPopUpLocation_t)(s3eGameCirclePopUpLocation location);
 typedef       void(*s3eGameCircleShowLeaderboardOverlay_t)(const char* leaderboardId);
 typedef       void(*s3eGameCircleShowLeaderboardsOverlay_t)();
 typedef       void(*s3eGameCircleSubmitScore_t)(const char* leaderboardId, int64_t score, const char* developerPayload);
-typedef       void(*s3eGameCircleGetLeaderboards_t)(const char* developerPayload);
-typedef       void(*s3eGameCircleGetScores_t)(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, int startRank, int count, const char* developerPayload);
-typedef       void(*s3eGameCircleGetLocalPlayerScore_t)(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, const char* developerPayload);
-typedef       bool(*s3eGameCircleHasNewMultiFileGameData_t)();
-typedef       void(*s3eGameCircleUnpackNewMultiFileGameData_t)();
-typedef       void(*s3eGameCircleSynchronizeBlob_t)(s3eGameCircleConflictStrategy conflictStrategy);
-typedef       void(*s3eGameCirclenchronizeBlobProgress_t)(const char* description, const void* data, int dataLen, s3eGameCircleConflictStrategy conflictStrategy);
-typedef       void(*s3eGameCircleSynchronizeMultiFile_t)(s3eGameCircleConflictStrategy conflictStrategy);
-typedef       void(*s3eGameCircleSynchronizeMultiFileProgress_t)(const char* description, s3eGameCircleConflictStrategy conflictStrategy);
-typedef       void(*s3eGameCircleRequestRevertBlob_t)();
-typedef       void(*s3eGameCircleRequestRevertMultiFile_t)();
 
 /**
  * struct that gets filled in by s3eGameCircleRegister
@@ -45,28 +40,12 @@ typedef struct s3eGameCircleFuncs
     s3eGameCircleRegister_t m_s3eGameCircleRegister;
     s3eGameCircleUnRegister_t m_s3eGameCircleUnRegister;
     s3eGameCircleInitialize_t m_s3eGameCircleInitialize;
-    s3eGameCircleGetStatus_t m_s3eGameCircleGetStatus;
-    s3eGameCircleIsReady_t m_s3eGameCircleIsReady;
-    s3eGameCircleGetPlayerAlias_t m_s3eGameCircleGetPlayerAlias;
+    s3eGameCircleIsInitialized_t m_s3eGameCircleIsInitialized;
     s3eGameCircleShowAchievementsOverlay_t m_s3eGameCircleShowAchievementsOverlay;
     s3eGameCircleUpdateAchievement_t m_s3eGameCircleUpdateAchievement;
-    s3eGameCircleResetAchievements_t m_s3eGameCircleResetAchievements;
-    s3eGameCircleResetAchievement_t m_s3eGameCircleResetAchievement;
-    s3eGameCircleSetPopUpLocation_t m_s3eGameCircleSetPopUpLocation;
     s3eGameCircleShowLeaderboardOverlay_t m_s3eGameCircleShowLeaderboardOverlay;
     s3eGameCircleShowLeaderboardsOverlay_t m_s3eGameCircleShowLeaderboardsOverlay;
     s3eGameCircleSubmitScore_t m_s3eGameCircleSubmitScore;
-    s3eGameCircleGetLeaderboards_t m_s3eGameCircleGetLeaderboards;
-    s3eGameCircleGetScores_t m_s3eGameCircleGetScores;
-    s3eGameCircleGetLocalPlayerScore_t m_s3eGameCircleGetLocalPlayerScore;
-    s3eGameCircleHasNewMultiFileGameData_t m_s3eGameCircleHasNewMultiFileGameData;
-    s3eGameCircleUnpackNewMultiFileGameData_t m_s3eGameCircleUnpackNewMultiFileGameData;
-    s3eGameCircleSynchronizeBlob_t m_s3eGameCircleSynchronizeBlob;
-    s3eGameCirclenchronizeBlobProgress_t m_s3eGameCirclenchronizeBlobProgress;
-    s3eGameCircleSynchronizeMultiFile_t m_s3eGameCircleSynchronizeMultiFile;
-    s3eGameCircleSynchronizeMultiFileProgress_t m_s3eGameCircleSynchronizeMultiFileProgress;
-    s3eGameCircleRequestRevertBlob_t m_s3eGameCircleRequestRevertBlob;
-    s3eGameCircleRequestRevertMultiFile_t m_s3eGameCircleRequestRevertMultiFile;
 } s3eGameCircleFuncs;
 
 static s3eGameCircleFuncs g_Ext;
@@ -82,7 +61,8 @@ static bool _extLoad()
         if (res == S3E_RESULT_SUCCESS)
             g_GotExt = true;
         else
-            s3eDebugAssertShow(S3E_MESSAGE_CONTINUE_STOP_IGNORE, "error loading extension: s3eGameCircle");
+            s3eDebugAssertShow(S3E_MESSAGE_CONTINUE_STOP_IGNORE,                 "error loading extension: s3eGameCircle");
+
         g_TriedExt = true;
         g_TriedNoMsgExt = true;
     }
@@ -118,7 +98,17 @@ s3eResult s3eGameCircleRegister(s3eGameCircleCallback cbid, s3eCallback fn, void
     if (!_extLoad())
         return S3E_RESULT_ERROR;
 
-    return g_Ext.m_s3eGameCircleRegister(cbid, fn, userData);
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    s3eResult ret = g_Ext.m_s3eGameCircleRegister(cbid, fn, userData);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
 }
 
 s3eResult s3eGameCircleUnRegister(s3eGameCircleCallback cbid, s3eCallback fn)
@@ -128,235 +118,155 @@ s3eResult s3eGameCircleUnRegister(s3eGameCircleCallback cbid, s3eCallback fn)
     if (!_extLoad())
         return S3E_RESULT_ERROR;
 
-    return g_Ext.m_s3eGameCircleUnRegister(cbid, fn);
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    s3eResult ret = g_Ext.m_s3eGameCircleUnRegister(cbid, fn);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return ret;
 }
 
-void s3eGameCircleInitialize(bool useAchievements, bool useWhispersync, bool useLeaderboards, bool firsRun)
+void s3eGameCircleInitialize(bool useAchievements, bool useLeaderboards)
 {
     IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[2] func: s3eGameCircleInitialize"));
 
     if (!_extLoad())
         return;
 
-    g_Ext.m_s3eGameCircleInitialize(useAchievements, useWhispersync, useLeaderboards, firsRun);
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
+    g_Ext.m_s3eGameCircleInitialize(useAchievements, useLeaderboards);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
 }
 
-s3eGameCircleStatus s3eGameCircleGetStatus()
+bool s3eGameCircleIsInitialized()
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[3] func: s3eGameCircleGetStatus"));
-
-    if (!_extLoad())
-        return S3E_GAMECIRCLE_STILL_INIT_NOT_CALLED;
-
-    return g_Ext.m_s3eGameCircleGetStatus();
-}
-
-bool s3eGameCircleIsReady()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[4] func: s3eGameCircleIsReady"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[3] func: s3eGameCircleIsInitialized"));
 
     if (!_extLoad())
         return false;
 
-    return g_Ext.m_s3eGameCircleIsReady();
-}
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
 
-void s3eGameCircleGetPlayerAlias(const char* developerPayload)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[5] func: s3eGameCircleGetPlayerAlias"));
+    bool ret = g_Ext.m_s3eGameCircleIsInitialized();
 
-    if (!_extLoad())
-        return;
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
 
-    g_Ext.m_s3eGameCircleGetPlayerAlias(developerPayload);
+    return ret;
 }
 
 void s3eGameCircleShowAchievementsOverlay()
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[6] func: s3eGameCircleShowAchievementsOverlay"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[4] func: s3eGameCircleShowAchievementsOverlay"));
 
     if (!_extLoad())
         return;
 
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
     g_Ext.m_s3eGameCircleShowAchievementsOverlay();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
 }
 
 void s3eGameCircleUpdateAchievement(const char* achievementId, float percentComplete, const char* developerPayload)
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[7] func: s3eGameCircleUpdateAchievement"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[5] func: s3eGameCircleUpdateAchievement"));
 
     if (!_extLoad())
         return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
 
     g_Ext.m_s3eGameCircleUpdateAchievement(achievementId, percentComplete, developerPayload);
-}
 
-void s3eGameCircleResetAchievements()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[8] func: s3eGameCircleResetAchievements"));
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
 
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleResetAchievements();
-}
-
-void s3eGameCircleResetAchievement(const char* achievementId, const char* developerPayload)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[9] func: s3eGameCircleResetAchievement"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleResetAchievement(achievementId, developerPayload);
-}
-
-void s3eGameCircleSetPopUpLocation(s3eGameCirclePopUpLocation location)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[10] func: s3eGameCircleSetPopUpLocation"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleSetPopUpLocation(location);
+    return;
 }
 
 void s3eGameCircleShowLeaderboardOverlay(const char* leaderboardId)
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[11] func: s3eGameCircleShowLeaderboardOverlay"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[6] func: s3eGameCircleShowLeaderboardOverlay"));
 
     if (!_extLoad())
         return;
 
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
     g_Ext.m_s3eGameCircleShowLeaderboardOverlay(leaderboardId);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
 }
 
 void s3eGameCircleShowLeaderboardsOverlay()
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[12] func: s3eGameCircleShowLeaderboardsOverlay"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[7] func: s3eGameCircleShowLeaderboardsOverlay"));
 
     if (!_extLoad())
         return;
 
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
+
     g_Ext.m_s3eGameCircleShowLeaderboardsOverlay();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
+
+    return;
 }
 
 void s3eGameCircleSubmitScore(const char* leaderboardId, int64_t score, const char* developerPayload)
 {
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[13] func: s3eGameCircleSubmitScore"));
+    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[8] func: s3eGameCircleSubmitScore"));
 
     if (!_extLoad())
         return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+#endif
 
     g_Ext.m_s3eGameCircleSubmitScore(leaderboardId, score, developerPayload);
-}
 
-void s3eGameCircleGetLeaderboards(const char* developerPayload)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[14] func: s3eGameCircleGetLeaderboards"));
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+#endif
 
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleGetLeaderboards(developerPayload);
-}
-
-void s3eGameCircleGetScores(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, int startRank, int count, const char* developerPayload)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[15] func: s3eGameCircleGetScores"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleGetScores(leaderboardId, filter, startRank, count, developerPayload);
-}
-
-void s3eGameCircleGetLocalPlayerScore(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, const char* developerPayload)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[16] func: s3eGameCircleGetLocalPlayerScore"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleGetLocalPlayerScore(leaderboardId, filter, developerPayload);
-}
-
-bool s3eGameCircleHasNewMultiFileGameData()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[17] func: s3eGameCircleHasNewMultiFileGameData"));
-
-    if (!_extLoad())
-        return false;
-
-    return g_Ext.m_s3eGameCircleHasNewMultiFileGameData();
-}
-
-void s3eGameCircleUnpackNewMultiFileGameData()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[18] func: s3eGameCircleUnpackNewMultiFileGameData"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleUnpackNewMultiFileGameData();
-}
-
-void s3eGameCircleSynchronizeBlob(s3eGameCircleConflictStrategy conflictStrategy)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[19] func: s3eGameCircleSynchronizeBlob"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleSynchronizeBlob(conflictStrategy);
-}
-
-void s3eGameCirclenchronizeBlobProgress(const char* description, const void* data, int dataLen, s3eGameCircleConflictStrategy conflictStrategy)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[20] func: s3eGameCirclenchronizeBlobProgress"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCirclenchronizeBlobProgress(description, data, dataLen, conflictStrategy);
-}
-
-void s3eGameCircleSynchronizeMultiFile(s3eGameCircleConflictStrategy conflictStrategy)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[21] func: s3eGameCircleSynchronizeMultiFile"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleSynchronizeMultiFile(conflictStrategy);
-}
-
-void s3eGameCircleSynchronizeMultiFileProgress(const char* description, s3eGameCircleConflictStrategy conflictStrategy)
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[22] func: s3eGameCircleSynchronizeMultiFileProgress"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleSynchronizeMultiFileProgress(description, conflictStrategy);
-}
-
-void s3eGameCircleRequestRevertBlob()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[23] func: s3eGameCircleRequestRevertBlob"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleRequestRevertBlob();
-}
-
-void s3eGameCircleRequestRevertMultiFile()
-{
-    IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle[24] func: s3eGameCircleRequestRevertMultiFile"));
-
-    if (!_extLoad())
-        return;
-
-    g_Ext.m_s3eGameCircleRequestRevertMultiFile();
+    return;
 }

@@ -42,51 +42,19 @@ void s3eGameCircleTerminate();
  * Platform-specific termination, implemented on each platform
  */
 void s3eGameCircleTerminate_platform();
-void s3eGameCircleInitialize_platform(bool useAchievements, bool useWhispersync, bool useLeaderboards, bool firsRun);
+void s3eGameCircleInitialize_platform(bool useAchievements, bool useLeaderboards);
 
-s3eGameCircleStatus s3eGameCircleGetStatus_platform();
-
-bool s3eGameCircleIsReady_platform();
-
-void s3eGameCircleGetPlayerAlias_platform(const char* developerPayload);
+bool s3eGameCircleIsInitialized_platform();
 
 void s3eGameCircleShowAchievementsOverlay_platform();
 
 void s3eGameCircleUpdateAchievement_platform(const char* achievementId, float percentComplete, const char* developerPayload);
-
-void s3eGameCircleResetAchievements_platform();
-
-void s3eGameCircleResetAchievement_platform(const char* achievementId, const char* developerPayload);
-
-void s3eGameCircleSetPopUpLocation_platform(s3eGameCirclePopUpLocation location);
 
 void s3eGameCircleShowLeaderboardOverlay_platform(const char* leaderboardId);
 
 void s3eGameCircleShowLeaderboardsOverlay_platform();
 
 void s3eGameCircleSubmitScore_platform(const char* leaderboardId, int64_t score, const char* developerPayload);
-
-void s3eGameCircleGetLeaderboards_platform(const char* developerPayload);
-
-void s3eGameCircleGetScores_platform(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, int startRank, int count, const char* developerPayload);
-
-void s3eGameCircleGetLocalPlayerScore_platform(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, const char* developerPayload);
-
-bool s3eGameCircleHasNewMultiFileGameData_platform();
-
-void s3eGameCircleUnpackNewMultiFileGameData_platform();
-
-void s3eGameCircleSynchronizeBlob_platform(s3eGameCircleConflictStrategy conflictStrategy);
-
-void s3eGameCirclenchronizeBlobProgress_platform(const char* description, const void* data, int dataLen, s3eGameCircleConflictStrategy conflictStrategy);
-
-void s3eGameCircleSynchronizeMultiFile_platform(s3eGameCircleConflictStrategy conflictStrategy);
-
-void s3eGameCircleSynchronizeMultiFileProgress_platform(const char* description, s3eGameCircleConflictStrategy conflictStrategy);
-
-void s3eGameCircleRequestRevertBlob_platform();
-
-void s3eGameCircleRequestRevertMultiFile_platform();
 
 
 #endif /* !S3EGAMECIRCLE_INTERNAL_H */

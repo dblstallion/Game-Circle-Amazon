@@ -37,7 +37,10 @@ if {{ not defined IW_MKF_IWCRT}}
 #Include the extension's jar file during deployment
 deployments
 {
-    android-external-jars=lib/android/amazon-gamecircle-1.2.1.jar
+    android-external-jars="lib/android/AmazonInsights-android-sdk-2.1.16.jar"
+    android-external-jars="lib/android/login-with-amazon-sdk.jar"
+    android-external-jars="lib/android/gamecirclesdk.jar"
     android-external-jars="lib/android/s3eGameCircle.jar"
+    android-so="lib/android/libAmazonGamesJni.so"
     android-so="lib/android/libs3eGameCircle.so"
 }

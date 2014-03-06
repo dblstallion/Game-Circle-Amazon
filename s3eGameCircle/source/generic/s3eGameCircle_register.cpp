@@ -24,10 +24,10 @@ extern void s3eGameCircleTerminate();
 // code is oftern build standalone, outside the main loader build.
 #if defined I3D_OS_IPHONE || defined I3D_OS_OSX || defined I3D_OS_LINUX || defined I3D_OS_WINDOWS
 
-static void s3eGameCircleInitialize_wrap(bool useAchievements, bool useWhispersync, bool useLeaderboards, bool firsRun)
+static void s3eGameCircleInitialize_wrap(bool useAchievements, bool useLeaderboards)
 {
     IwTrace(GAMECIRCLE_VERBOSE, ("calling s3eGameCircle func on main thread: s3eGameCircleInitialize"));
-    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)s3eGameCircleInitialize, 4, useAchievements, useWhispersync, useLeaderboards, firsRun);
+    s3eEdkThreadRunOnOS((s3eEdkThreadFunc)s3eGameCircleInitialize, 2, useAchievements, useLeaderboards);
 }
 
 #define s3eGameCircleInitialize s3eGameCircleInitialize_wrap
@@ -47,37 +47,21 @@ s3eResult s3eGameCircleUnRegister(s3eGameCircleCallback cbid, s3eCallback fn)
 void s3eGameCircleRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[25];
+    void* funcPtrs[9];
     funcPtrs[0] = (void*)s3eGameCircleRegister;
     funcPtrs[1] = (void*)s3eGameCircleUnRegister;
     funcPtrs[2] = (void*)s3eGameCircleInitialize;
-    funcPtrs[3] = (void*)s3eGameCircleGetStatus;
-    funcPtrs[4] = (void*)s3eGameCircleIsReady;
-    funcPtrs[5] = (void*)s3eGameCircleGetPlayerAlias;
-    funcPtrs[6] = (void*)s3eGameCircleShowAchievementsOverlay;
-    funcPtrs[7] = (void*)s3eGameCircleUpdateAchievement;
-    funcPtrs[8] = (void*)s3eGameCircleResetAchievements;
-    funcPtrs[9] = (void*)s3eGameCircleResetAchievement;
-    funcPtrs[10] = (void*)s3eGameCircleSetPopUpLocation;
-    funcPtrs[11] = (void*)s3eGameCircleShowLeaderboardOverlay;
-    funcPtrs[12] = (void*)s3eGameCircleShowLeaderboardsOverlay;
-    funcPtrs[13] = (void*)s3eGameCircleSubmitScore;
-    funcPtrs[14] = (void*)s3eGameCircleGetLeaderboards;
-    funcPtrs[15] = (void*)s3eGameCircleGetScores;
-    funcPtrs[16] = (void*)s3eGameCircleGetLocalPlayerScore;
-    funcPtrs[17] = (void*)s3eGameCircleHasNewMultiFileGameData;
-    funcPtrs[18] = (void*)s3eGameCircleUnpackNewMultiFileGameData;
-    funcPtrs[19] = (void*)s3eGameCircleSynchronizeBlob;
-    funcPtrs[20] = (void*)s3eGameCirclenchronizeBlobProgress;
-    funcPtrs[21] = (void*)s3eGameCircleSynchronizeMultiFile;
-    funcPtrs[22] = (void*)s3eGameCircleSynchronizeMultiFileProgress;
-    funcPtrs[23] = (void*)s3eGameCircleRequestRevertBlob;
-    funcPtrs[24] = (void*)s3eGameCircleRequestRevertMultiFile;
+    funcPtrs[3] = (void*)s3eGameCircleIsInitialized;
+    funcPtrs[4] = (void*)s3eGameCircleShowAchievementsOverlay;
+    funcPtrs[5] = (void*)s3eGameCircleUpdateAchievement;
+    funcPtrs[6] = (void*)s3eGameCircleShowLeaderboardOverlay;
+    funcPtrs[7] = (void*)s3eGameCircleShowLeaderboardsOverlay;
+    funcPtrs[8] = (void*)s3eGameCircleSubmitScore;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[25] = { 0 };
+    int flags[9] = { 0 };
 
     /*
      * Register the extension

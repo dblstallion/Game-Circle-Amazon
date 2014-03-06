@@ -1,0 +1,333 @@
+Archive member included because of file (symbol)
+
+C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                              debug\s3eGameCircle_platform.os (IwDebugTraceSetTraceChannel)
+C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                              debug\s3eGameCircle_platform.os (s3eEdkThreadRunOnOS)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                              C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o) (__aeabi_ldivmod)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                              c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                              c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                              c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o) (__divdi3)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                              c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o) (__udivdi3)
+c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                              c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o) (__aeabi_uidiv)
+
+Discarded input sections
+
+ .text          0x00000000       0x14 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .bss           0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .note.GNU-stack
+                0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .group         0x00000000        0x8 debug\s3eGameCircle_platform.os
+ .text          0x00000000        0x0 debug\s3eGameCircle_platform.os
+ .data          0x00000000        0x0 debug\s3eGameCircle_platform.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\s3eGameCircle_platform.os
+ .text          0x00000000        0x0 debug\s3eGameCircle.os
+ .data          0x00000000        0x0 debug\s3eGameCircle.os
+ .bss           0x00000000        0x0 debug\s3eGameCircle.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\s3eGameCircle.os
+ .text          0x00000000        0x0 debug\s3eGameCircle_register.os
+ .data          0x00000000        0x0 debug\s3eGameCircle_register.os
+ .bss           0x00000000        0x0 debug\s3eGameCircle_register.os
+ .note.GNU-stack
+                0x00000000        0x0 debug\s3eGameCircle_register.os
+ .text          0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .data          0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwAssertRegisterTextCallback
+                0x00000000       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwAssertRegisterCallback
+                0x00000000       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugErrorRegisterCallback
+                0x00000000       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetUID
+                0x00000000       0x14 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugClearConfigCache
+                0x00000000       0x80 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugErrorShow
+                0x00000000       0xec C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceLineVPrintf
+                0x00000000       0xfc C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertIsChannelOn
+                0x00000000      0x204 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceDisable
+                0x00000000       0x10 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetMessage
+                0x00000000       0xfc C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertSetSolution
+                0x00000000       0xa0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugAssertShow
+                0x00000000      0x2d0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceChannelSwitch
+                0x00000000      0x4c4 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .note.GNU-stack
+                0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text          0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .data          0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .bss           0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkThreadRunOnOSAsync
+                0x00000000       0x30 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .text.s3eEdkErrorSetString
+                0x00000000       0x30 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .note.GNU-stack
+                0x00000000        0x0 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .text          0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .data          0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .bss           0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+ .note.GNU-stack
+                0x00000000        0x0 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+Memory map
+
+ ** file header
+                0x00000000       0x34
+ ** segment headers
+                0x00000034      0x100
+
+.interp         0x00000134       0x13
+ ** fill        0x00000134       0x13
+
+.dynsym         0x00000148      0x2a0
+ ** dynsym      0x00000148      0x2a0
+
+.dynstr         0x000003e8      0x285
+ ** string table
+                0x000003e8      0x285
+
+.hash           0x00000670      0x144
+ ** hash        0x00000670      0x144
+
+.rel.dyn        0x000007b4       0x58
+ ** dynamic relocs
+                0x000007b4       0x58
+
+.rel.plt        0x0000080c       0x88
+ ** dynamic relocs
+                0x0000080c       0x88
+
+.plt            0x00000894       0xe0
+ ** PLT         0x00000894       0xe0
+
+.text           0x00000974     0x1da8
+ .text.exit     0x00000974       0x10 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x00000974                __on_dlclose
+ .text._ZN7_JNIEnv9FindClassEPKc
+                0x00000984       0x38 debug\s3eGameCircle_platform.os
+                0x00000984                _JNIEnv::FindClass(char const*)
+ .text._ZN7_JNIEnv17ExceptionOccurredEv
+                0x000009bc       0x30 debug\s3eGameCircle_platform.os
+                0x000009bc                _JNIEnv::ExceptionOccurred()
+ .text._ZN7_JNIEnv17ExceptionDescribeEv
+                0x000009ec       0x28 debug\s3eGameCircle_platform.os
+                0x000009ec                _JNIEnv::ExceptionDescribe()
+ .text._ZN7_JNIEnv14ExceptionClearEv
+                0x00000a14       0x28 debug\s3eGameCircle_platform.os
+                0x00000a14                _JNIEnv::ExceptionClear()
+ .text._ZN7_JNIEnv12NewGlobalRefEP8_jobject
+                0x00000a3c       0x38 debug\s3eGameCircle_platform.os
+                0x00000a3c                _JNIEnv::NewGlobalRef(_jobject*)
+ .text._ZN7_JNIEnv15DeleteGlobalRefEP8_jobject
+                0x00000a74       0x30 debug\s3eGameCircle_platform.os
+                0x00000a74                _JNIEnv::DeleteGlobalRef(_jobject*)
+ .text._ZN7_JNIEnv14DeleteLocalRefEP8_jobject
+                0x00000aa4       0x30 debug\s3eGameCircle_platform.os
+                0x00000aa4                _JNIEnv::DeleteLocalRef(_jobject*)
+ .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
+                0x00000ad4       0x58 debug\s3eGameCircle_platform.os
+                0x00000ad4                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
+ .text._ZN7_JNIEnv11GetMethodIDEP7_jclassPKcS3_
+                0x00000b2c       0x48 debug\s3eGameCircle_platform.os
+                0x00000b2c                _JNIEnv::GetMethodID(_jclass*, char const*, char const*)
+ .text._ZN7_JNIEnv17CallBooleanMethodEP8_jobjectP10_jmethodIDz
+                0x00000b74       0x5c debug\s3eGameCircle_platform.os
+                0x00000b74                _JNIEnv::CallBooleanMethod(_jobject*, _jmethodID*, ...)
+ .text._ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
+                0x00000bd0       0x4c debug\s3eGameCircle_platform.os
+                0x00000bd0                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
+ .text._ZN7_JNIEnv12NewStringUTFEPKc
+                0x00000c1c       0x38 debug\s3eGameCircle_platform.os
+                0x00000c1c                _JNIEnv::NewStringUTF(char const*)
+ .text._ZN7_JavaVM6GetEnvEPPvi
+                0x00000c54       0x40 debug\s3eGameCircle_platform.os
+                0x00000c54                _JavaVM::GetEnv(void**, int)
+ .text._ZL15s3eEdkJNIGetEnvv
+                0x00000c94       0x40 debug\s3eGameCircle_platform.os
+ .text._ZL27s3eEdkAndroidFindClass_realPKc
+                0x00000cd4       0x8c debug\s3eGameCircle_platform.os
+ .text._ZL22s3eEdkAndroidFindClassPKc
+                0x00000d60       0x38 debug\s3eGameCircle_platform.os
+ .text._Z26s3eGameCircleInit_platformv
+                0x00000d98      0x440 debug\s3eGameCircle_platform.os
+                0x00000d98                s3eGameCircleInit_platform()
+ .text._Z31s3eGameCircleTerminate_platformv
+                0x000011d8        0x4 debug\s3eGameCircle_platform.os
+                0x000011d8                s3eGameCircleTerminate_platform()
+ .text._Z32s3eGameCircleInitialize_platformbb
+                0x000011dc       0x5c debug\s3eGameCircle_platform.os
+                0x000011dc                s3eGameCircleInitialize_platform(bool, bool)
+ .text._Z35s3eGameCircleIsInitialized_platformv
+                0x00001238       0x60 debug\s3eGameCircle_platform.os
+                0x00001238                s3eGameCircleIsInitialized_platform()
+ .text._Z45s3eGameCircleShowAchievementsOverlay_platformv
+                0x00001298       0x48 debug\s3eGameCircle_platform.os
+                0x00001298                s3eGameCircleShowAchievementsOverlay_platform()
+ .text._Z39s3eGameCircleUpdateAchievement_platformPKcfS0_
+                0x000012e0       0x8c debug\s3eGameCircle_platform.os
+                0x000012e0                s3eGameCircleUpdateAchievement_platform(char const*, float, char const*)
+ .text._Z44s3eGameCircleShowLeaderboardOverlay_platformPKc
+                0x0000136c       0x60 debug\s3eGameCircle_platform.os
+                0x0000136c                s3eGameCircleShowLeaderboardOverlay_platform(char const*)
+ .text._Z45s3eGameCircleShowLeaderboardsOverlay_platformv
+                0x000013cc       0x48 debug\s3eGameCircle_platform.os
+                0x000013cc                s3eGameCircleShowLeaderboardsOverlay_platform()
+ .text._Z33s3eGameCircleSubmitScore_platformPKcxS0_
+                0x00001414       0x80 debug\s3eGameCircle_platform.os
+                0x00001414                s3eGameCircleSubmitScore_platform(char const*, long long, char const*)
+ .text._Z17s3eGameCircleInitv
+                0x00001494       0x14 debug\s3eGameCircle.os
+                0x00001494                s3eGameCircleInit()
+ .text._Z22s3eGameCircleTerminatev
+                0x000014a8        0xc debug\s3eGameCircle.os
+                0x000014a8                s3eGameCircleTerminate()
+ .text.s3eGameCircleInitialize
+                0x000014b4       0x34 debug\s3eGameCircle.os
+                0x000014b4                s3eGameCircleInitialize
+ .text.s3eGameCircleIsInitialized
+                0x000014e8       0x14 debug\s3eGameCircle.os
+                0x000014e8                s3eGameCircleIsInitialized
+ .text.s3eGameCircleShowAchievementsOverlay
+                0x000014fc        0xc debug\s3eGameCircle.os
+                0x000014fc                s3eGameCircleShowAchievementsOverlay
+ .text.s3eGameCircleUpdateAchievement
+                0x00001508       0x2c debug\s3eGameCircle.os
+                0x00001508                s3eGameCircleUpdateAchievement
+ .text.s3eGameCircleShowLeaderboardOverlay
+                0x00001534       0x1c debug\s3eGameCircle.os
+                0x00001534                s3eGameCircleShowLeaderboardOverlay
+ .text.s3eGameCircleShowLeaderboardsOverlay
+                0x00001550        0xc debug\s3eGameCircle.os
+                0x00001550                s3eGameCircleShowLeaderboardsOverlay
+ .text.s3eGameCircleSubmitScore
+                0x0000155c       0x2c debug\s3eGameCircle.os
+                0x0000155c                s3eGameCircleSubmitScore
+ .text._ZL28s3eGameCircleInitialize_wrapbb
+                0x00001588       0xa8 debug\s3eGameCircle_register.os
+ .text.s3eGameCircleRegister
+                0x00001630       0x50 debug\s3eGameCircle_register.os
+                0x00001630                s3eGameCircleRegister
+ .text.s3eGameCircleUnRegister
+                0x00001680       0x44 debug\s3eGameCircle_register.os
+                0x00001680                s3eGameCircleUnRegister
+ .text._Z24s3eGameCircleRegisterExtv
+                0x000016c4      0x168 debug\s3eGameCircle_register.os
+                0x000016c4                s3eGameCircleRegisterExt()
+ .text.RegisterExt
+                0x0000182c        0xc debug\s3eGameCircle_register.os
+                0x0000182c                RegisterExt
+ .text.IwDebugTraceSetTraceChannel
+                0x00001838       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001838                IwDebugTraceSetTraceChannel
+ .text._GLOBAL__I_Y__sdk_modules_iwcore_source_IwDebug.cpp
+                0x00001854       0xa4 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .text.IwDebugTraceIsChannelOn
+                0x000018f8      0x2b8 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x000018f8                IwDebugTraceIsChannelOn
+ .text.IwDebugTraceLinePrintf
+                0x00001bb0      0x10c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001bb0                IwDebugTraceLinePrintf
+ .text.s3eEdkThreadRunOnOS
+                0x00001cbc       0x30 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                0x00001cbc                s3eEdkThreadRunOnOS
+ .text          0x00001cec       0x44 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x00001cec                __aeabi_ldivmod
+ .text          0x00001d30       0x10 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x00001d30                __aeabi_idiv0
+                0x00001d30                __aeabi_ldiv0
+ .text          0x00001d40       0x78 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x00001d40                __gnu_ldivmod_helper
+                0x00001d7c                __gnu_uldivmod_helper
+ .text          0x00001db8      0x498 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x00001db8                __divdi3
+ .text          0x00002250      0x404 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00002250                __udivdi3
+ .text          0xffffffffffffffff       0xc8 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                0x00002654                __udivsi3
+                0x00002654                __aeabi_uidiv
+                0x000026fc                __aeabi_uidivmod
+
+.rodata         0x0000271c      0x350
+ .rodata        0x0000271c      0x1cc debug\s3eGameCircle_platform.os
+ .rodata        0x000028e8       0x68 debug\s3eGameCircle_register.os
+ ** merge strings
+                0x00002950      0x11c
+
+.ARM.exidx      0x00002a6c        0x8
+ .ARM.exidx     0x00002a6c        0x8 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+
+.fini_array     0x00003e9c        0x8
+ .fini_array    0x00003e9c        0x4 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+ .fini_array    0x00003ea0        0x4 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.init_array     0x00003ea4        0x8
+ .init_array    0x00003ea4        0x4 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+ .init_array    0x00003ea8        0x4 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtend_so.o
+
+.dynamic        0x00003eac       0xe0
+ ** dynamic     0x00003eac       0xe0
+
+.got            0x00003f8c       0x74
+ ** GOT         0x00003f8c       0x24
+ ** GOT PLT     0x00003fb0       0x50
+
+.data           0x00004000        0x4
+ .data          0x00004000        0x4 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
+                0x00004000                __dso_handle
+
+.bss            0x00004004     0x1a48
+ .bss           0x00004004       0x20 debug\s3eGameCircle_platform.os
+ .bss           0x00004024     0x1a28 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00004024                g_DebugGlobals

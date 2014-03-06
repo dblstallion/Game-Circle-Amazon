@@ -1,10 +1,10 @@
 /*
- * Copyright (C) 2001-2012 Ideaworks3D Ltd.
- * All Rights Reserved.
+ * (C) 2001-2012 Marmalade. All Rights Reserved.
  *
  * This document is protected by copyright, and contains information
- * proprietary to Ideaworks Labs.
- * This file consists of source code released by Ideaworks Labs under
+ * proprietary to Marmalade.
+ *
+ * This file consists of source code released by Marmalade under
  * the terms of the accompanying End User License Agreement (EULA).
  * Please do not use this program/source code before you have read the
  * EULA and have agreed to be bound by its terms.
@@ -346,35 +346,19 @@ s3eResult s3eGameCircleUnRegister(s3eGameCircleCallback cbid, s3eCallback fn);
 
 /**
  * First method You must call
- * @param features s3eGameCircleGamesFeature features array
- * @param firsRun Is game first run on this device
+ * @param bool useAchievements Does game use achievements?
+ * @param bool useLeaderboards Does game use leaderboards?
  * @return status
  * 
  */
-void s3eGameCircleInitialize(bool useAchievements, bool useWhispersync, bool useLeaderboards, bool firsRun);
-
-/**
- * Get status
- * @return status
- * 
- */
-s3eGameCircleStatus s3eGameCircleGetStatus();
+void s3eGameCircleInitialize(bool useAchievements, bool useLeaderboards);
 
 /**
  * For applications where the AmazonGames client is instantiated well before it is used, this method can ensure that the client is bound and ready for use. 
- * However, it is highly recommended to wait for the AmazonGamesCallback.onServiceConnected() callback method to be called instead.
- * Note: Since Android binding can only occur after the main thread enters its looping stage, busy waiting on this method will not work.
+ * However, it is highly recommended to wait for the S3E_GAMECIRCLE_INIT_CALLBACK callback method to be called instead.
  * @return false until the service is bound and ready to use. Returns true otherwise.
  */
-bool s3eGameCircleIsReady();
-
-/**
- * Initiate a request to retrieve the player's alias from the player profile.
- * @par developerPayload A string, encoded in UTF-8, to be attached to the purchase request. If one is given,
- * it will be included in the corresponding ???s3eAndroidMarketBillingOrder???. Useful for telling apart
- * purchases of identical products. 
- */
-void s3eGameCircleGetPlayerAlias(const char* developerPayload S3E_DEFAULT(NULL));
+bool s3eGameCircleIsInitialized();
 
 /**
  * 
@@ -391,22 +375,6 @@ void s3eGameCircleShowAchievementsOverlay();
 void s3eGameCircleUpdateAchievement(const char* achievementId, float percentComplete, const char* developerPayload S3E_DEFAULT(NULL));
 
 /**
- * Resets all of the achievements for the game to 0%. AchievementsClient that were made visible go back to invisible where appropriate
- *
- */
-void s3eGameCircleResetAchievements();
-
-/**
- * Reset the specified achievement to 0%. Achievement is made invisible again if appropriate.
- */
-void s3eGameCircleResetAchievement(const char* achievementId, const char* developerPayload S3E_DEFAULT(NULL));
-
-/**
- * Sets the pop up location for toast notifications
- */
-void s3eGameCircleSetPopUpLocation(s3eGameCirclePopUpLocation location);
-
-/**
  * Show the leaderboard overlay for a particular leaderboard.
  */
 void s3eGameCircleShowLeaderboardOverlay(const char* leaderboardId);
@@ -417,77 +385,9 @@ void s3eGameCircleShowLeaderboardOverlay(const char* leaderboardId);
 void s3eGameCircleShowLeaderboardsOverlay();
 
 /**
- * Request that a score be submitted to the leaderboard. Returns a handle that recieves the response
+ * Request that a score be submitted to the leaderboard.
  */
 void s3eGameCircleSubmitScore(const char* leaderboardId, int64_t score, const char* developerPayload S3E_DEFAULT(NULL));
-
-/**
- * Request all leaderboards for this game. The results will be returned in the reponse handle as a RequestLeaderboardsResponse.
- */
-void s3eGameCircleGetLeaderboards(const char* developerPayload S3E_DEFAULT(NULL));
-
-/**
- * Request a selection of scores from a leaderboard based on the filters and range selected. Result is returned to the ResponseHandler callback
- */
-void s3eGameCircleGetScores(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, int startRank, int count, const char* developerPayload S3E_DEFAULT(NULL));
-
-/**
- * Requests the current users top RankedScore for the leaderboard. Returns a handle that receives the response
- */
-void s3eGameCircleGetLocalPlayerScore(const char* leaderboardId, s3eGameCircleLeaderboardFilter filter, const char* developerPayload S3E_DEFAULT(NULL));
-
-/**
- * true when there is multi-file game data that was previously downloaded from the cloud during a synchronize call, but was never unpacked over the file system.
- */
-bool s3eGameCircleHasNewMultiFileGameData();
-
-/**
- * This will unpack and overlay multi-file game data that was previously downloaded from the cloud during a synchronize call, but never unpacked.
- *
- */
-void s3eGameCircleUnpackNewMultiFileGameData();
-
-/**
- * Initiates an asynchronous request to synchronize the game with the latest version of the game state in the cloud. 
- * The response will be handled by the callback specified by the request. If a previous synchronizeProgress() call had failed, 
- * this method will attempt to synchronize the progress. This is typically called during onResume() events.
- *
- */
-void s3eGameCircleSynchronizeBlob(s3eGameCircleConflictStrategy conflictStrategy S3E_DEFAULT(S3E_GAMECIRCLE_PLAYER_SELECT));
-
-/**
- *  Provides options for saving game data to the Amazon cloud as variable length byte data
- *
- */
-void s3eGameCirclenchronizeBlobProgress(const char* description, const void* data, int dataLen, s3eGameCircleConflictStrategy conflictStrategy S3E_DEFAULT(S3E_GAMECIRCLE_PLAYER_SELECT));
-
-/**
- * Initiates an asynchronous request to synchronize the game with the latest version of the game state in the cloud. 
- * The response will be handled by the callback specified by the request. If a previous synchronizeProgress() call had failed, 
- * this method will attempt to synchronize the progress. This is typically called during onResume() events.
- *
- */
-void s3eGameCircleSynchronizeMultiFile(s3eGameCircleConflictStrategy conflictStrategy S3E_DEFAULT(S3E_GAMECIRCLE_PLAYER_SELECT));
-
-/**
- * Initiates an asynchronous request to synchronize the current game state with the latest version of the game state in the cloud. 
- * The response will be handled by the callback specified by the request. This is typically called when the game reaches a checkpoint or after progress has been made.
- *
- */
-void s3eGameCircleSynchronizeMultiFileProgress(const char* description, s3eGameCircleConflictStrategy conflictStrategy S3E_DEFAULT(S3E_GAMECIRCLE_PLAYER_SELECT));
-
-/**
- * Initiates an asynchronous request to revert the game state to a previously saved state. The player will be presented with a list of previous checkpoints to select to revert to.
- *
- */
-void s3eGameCircleRequestRevertBlob();
-
-/**
- * Initiates an asynchronous request to revert the game state to a previously saved state. The player will be presented with a list of previous checkpoints to select to revert to. 
- * This should only be called by games that synchronize
- *
- */
-void s3eGameCircleRequestRevertMultiFile();
 
 S3E_END_C_DECL
 
