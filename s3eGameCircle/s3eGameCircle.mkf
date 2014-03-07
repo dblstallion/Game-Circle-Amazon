@@ -41,6 +41,7 @@ deployments
     android-external-jars="lib/android/login-with-amazon-sdk.jar"
     android-external-jars="lib/android/gamecirclesdk.jar"
     android-external-jars="lib/android/s3eGameCircle.jar"
+    android-external-res="lib/android/res/"
     android-so="lib/android/libAmazonGamesJni.so"
     android-so="lib/android/libs3eGameCircle.so"
 }
