@@ -124,6 +124,8 @@ void s3eGameCircleUpdateAchievement_platform(const char* achievementId, float pe
     jstring achievementId_jstr = env->NewStringUTF(achievementId);
     jstring developerPayload_jstr = env->NewStringUTF(developerPayload);
     env->CallVoidMethod(g_Obj, g_s3eGameCircleUpdateAchievement, achievementId_jstr, percentComplete, developerPayload_jstr);
+    env->DeleteLocalRef(achievementId_jstr);
+    env->DeleteLocalRef(developerPayload_jstr);
 }
 
 void s3eGameCircleShowLeaderboardOverlay_platform(const char* leaderboardId)
@@ -145,4 +147,6 @@ void s3eGameCircleSubmitScore_platform(const char* leaderboardId, int64_t score,
     jstring leaderboardId_jstr = env->NewStringUTF(leaderboardId);
     jstring developerPayload_jstr = env->NewStringUTF(developerPayload);
     env->CallVoidMethod(g_Obj, g_s3eGameCircleSubmitScore, leaderboardId_jstr, score, developerPayload_jstr);
+    env->DeleteLocalRef(leaderboardId_jstr);
+    env->DeleteLocalRef(developerPayload_jstr);
 }

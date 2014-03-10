@@ -152,7 +152,7 @@ Memory map
 .plt            0x00000894       0xe0
  ** PLT         0x00000894       0xe0
 
-.text           0x00000974     0x1da8
+.text           0x00000974     0x1dd8
  .text.exit     0x00000974       0x10 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
                 0x00000974                __on_dlclose
  .text._ZN7_JNIEnv9FindClassEPKc
@@ -216,97 +216,97 @@ Memory map
                 0x00001298       0x48 debug\s3eGameCircle_platform.os
                 0x00001298                s3eGameCircleShowAchievementsOverlay_platform()
  .text._Z39s3eGameCircleUpdateAchievement_platformPKcfS0_
-                0x000012e0       0x8c debug\s3eGameCircle_platform.os
+                0x000012e0       0xa4 debug\s3eGameCircle_platform.os
                 0x000012e0                s3eGameCircleUpdateAchievement_platform(char const*, float, char const*)
  .text._Z44s3eGameCircleShowLeaderboardOverlay_platformPKc
-                0x0000136c       0x60 debug\s3eGameCircle_platform.os
-                0x0000136c                s3eGameCircleShowLeaderboardOverlay_platform(char const*)
+                0x00001384       0x60 debug\s3eGameCircle_platform.os
+                0x00001384                s3eGameCircleShowLeaderboardOverlay_platform(char const*)
  .text._Z45s3eGameCircleShowLeaderboardsOverlay_platformv
-                0x000013cc       0x48 debug\s3eGameCircle_platform.os
-                0x000013cc                s3eGameCircleShowLeaderboardsOverlay_platform()
+                0x000013e4       0x48 debug\s3eGameCircle_platform.os
+                0x000013e4                s3eGameCircleShowLeaderboardsOverlay_platform()
  .text._Z33s3eGameCircleSubmitScore_platformPKcxS0_
-                0x00001414       0x80 debug\s3eGameCircle_platform.os
-                0x00001414                s3eGameCircleSubmitScore_platform(char const*, long long, char const*)
+                0x0000142c       0x98 debug\s3eGameCircle_platform.os
+                0x0000142c                s3eGameCircleSubmitScore_platform(char const*, long long, char const*)
  .text._Z17s3eGameCircleInitv
-                0x00001494       0x14 debug\s3eGameCircle.os
-                0x00001494                s3eGameCircleInit()
+                0x000014c4       0x14 debug\s3eGameCircle.os
+                0x000014c4                s3eGameCircleInit()
  .text._Z22s3eGameCircleTerminatev
-                0x000014a8        0xc debug\s3eGameCircle.os
-                0x000014a8                s3eGameCircleTerminate()
+                0x000014d8        0xc debug\s3eGameCircle.os
+                0x000014d8                s3eGameCircleTerminate()
  .text.s3eGameCircleInitialize
-                0x000014b4       0x34 debug\s3eGameCircle.os
-                0x000014b4                s3eGameCircleInitialize
+                0x000014e4       0x34 debug\s3eGameCircle.os
+                0x000014e4                s3eGameCircleInitialize
  .text.s3eGameCircleIsInitialized
-                0x000014e8       0x14 debug\s3eGameCircle.os
-                0x000014e8                s3eGameCircleIsInitialized
+                0x00001518       0x14 debug\s3eGameCircle.os
+                0x00001518                s3eGameCircleIsInitialized
  .text.s3eGameCircleShowAchievementsOverlay
-                0x000014fc        0xc debug\s3eGameCircle.os
-                0x000014fc                s3eGameCircleShowAchievementsOverlay
+                0x0000152c        0xc debug\s3eGameCircle.os
+                0x0000152c                s3eGameCircleShowAchievementsOverlay
  .text.s3eGameCircleUpdateAchievement
-                0x00001508       0x2c debug\s3eGameCircle.os
-                0x00001508                s3eGameCircleUpdateAchievement
+                0x00001538       0x2c debug\s3eGameCircle.os
+                0x00001538                s3eGameCircleUpdateAchievement
  .text.s3eGameCircleShowLeaderboardOverlay
-                0x00001534       0x1c debug\s3eGameCircle.os
-                0x00001534                s3eGameCircleShowLeaderboardOverlay
+                0x00001564       0x1c debug\s3eGameCircle.os
+                0x00001564                s3eGameCircleShowLeaderboardOverlay
  .text.s3eGameCircleShowLeaderboardsOverlay
-                0x00001550        0xc debug\s3eGameCircle.os
-                0x00001550                s3eGameCircleShowLeaderboardsOverlay
+                0x00001580        0xc debug\s3eGameCircle.os
+                0x00001580                s3eGameCircleShowLeaderboardsOverlay
  .text.s3eGameCircleSubmitScore
-                0x0000155c       0x2c debug\s3eGameCircle.os
-                0x0000155c                s3eGameCircleSubmitScore
+                0x0000158c       0x2c debug\s3eGameCircle.os
+                0x0000158c                s3eGameCircleSubmitScore
  .text._ZL28s3eGameCircleInitialize_wrapbb
-                0x00001588       0xa8 debug\s3eGameCircle_register.os
+                0x000015b8       0xa8 debug\s3eGameCircle_register.os
  .text.s3eGameCircleRegister
-                0x00001630       0x50 debug\s3eGameCircle_register.os
-                0x00001630                s3eGameCircleRegister
+                0x00001660       0x50 debug\s3eGameCircle_register.os
+                0x00001660                s3eGameCircleRegister
  .text.s3eGameCircleUnRegister
-                0x00001680       0x44 debug\s3eGameCircle_register.os
-                0x00001680                s3eGameCircleUnRegister
+                0x000016b0       0x44 debug\s3eGameCircle_register.os
+                0x000016b0                s3eGameCircleUnRegister
  .text._Z24s3eGameCircleRegisterExtv
-                0x000016c4      0x168 debug\s3eGameCircle_register.os
-                0x000016c4                s3eGameCircleRegisterExt()
+                0x000016f4      0x168 debug\s3eGameCircle_register.os
+                0x000016f4                s3eGameCircleRegisterExt()
  .text.RegisterExt
-                0x0000182c        0xc debug\s3eGameCircle_register.os
-                0x0000182c                RegisterExt
+                0x0000185c        0xc debug\s3eGameCircle_register.os
+                0x0000185c                RegisterExt
  .text.IwDebugTraceSetTraceChannel
-                0x00001838       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x00001838                IwDebugTraceSetTraceChannel
+                0x00001868       0x1c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001868                IwDebugTraceSetTraceChannel
  .text._GLOBAL__I_Y__sdk_modules_iwcore_source_IwDebug.cpp
-                0x00001854       0xa4 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001884       0xa4 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
  .text.IwDebugTraceIsChannelOn
-                0x000018f8      0x2b8 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x000018f8                IwDebugTraceIsChannelOn
+                0x00001928      0x2b8 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001928                IwDebugTraceIsChannelOn
  .text.IwDebugTraceLinePrintf
-                0x00001bb0      0x10c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
-                0x00001bb0                IwDebugTraceLinePrintf
+                0x00001be0      0x10c C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(IwDebug.o)
+                0x00001be0                IwDebugTraceLinePrintf
  .text.s3eEdkThreadRunOnOS
-                0x00001cbc       0x30 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
-                0x00001cbc                s3eEdkThreadRunOnOS
- .text          0x00001cec       0x44 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
-                0x00001cec                __aeabi_ldivmod
- .text          0x00001d30       0x10 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
-                0x00001d30                __aeabi_idiv0
-                0x00001d30                __aeabi_ldiv0
- .text          0x00001d40       0x78 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
-                0x00001d40                __gnu_ldivmod_helper
-                0x00001d7c                __gnu_uldivmod_helper
- .text          0x00001db8      0x498 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
-                0x00001db8                __divdi3
- .text          0x00002250      0x404 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
-                0x00002250                __udivdi3
+                0x00001cec       0x30 C:\marmalade\7.1\s3e\edk\lib\android/libedk.a(edk_helpers.o)
+                0x00001cec                s3eEdkThreadRunOnOS
+ .text          0x00001d1c       0x44 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x00001d1c                __aeabi_ldivmod
+ .text          0x00001d60       0x10 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x00001d60                __aeabi_idiv0
+                0x00001d60                __aeabi_ldiv0
+ .text          0x00001d70       0x78 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x00001d70                __gnu_ldivmod_helper
+                0x00001dac                __gnu_uldivmod_helper
+ .text          0x00001de8      0x498 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x00001de8                __divdi3
+ .text          0x00002280      0x404 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00002280                __udivdi3
  .text          0xffffffffffffffff       0xc8 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
-                0x00002654                __udivsi3
-                0x00002654                __aeabi_uidiv
-                0x000026fc                __aeabi_uidivmod
+                0x00002684                __udivsi3
+                0x00002684                __aeabi_uidiv
+                0x0000272c                __aeabi_uidivmod
 
-.rodata         0x0000271c      0x350
- .rodata        0x0000271c      0x1cc debug\s3eGameCircle_platform.os
- .rodata        0x000028e8       0x68 debug\s3eGameCircle_register.os
+.rodata         0x0000274c      0x350
+ .rodata        0x0000274c      0x1cc debug\s3eGameCircle_platform.os
+ .rodata        0x00002918       0x68 debug\s3eGameCircle_register.os
  ** merge strings
-                0x00002950      0x11c
+                0x00002980      0x11c
 
-.ARM.exidx      0x00002a6c        0x8
- .ARM.exidx     0x00002a6c        0x8 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+.ARM.exidx      0x00002a9c        0x8
+ .ARM.exidx     0x00002a9c        0x8 c:/android-ndk-r9/toolchains/arm-linux-androideabi-4.8/prebuilt/windows/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
 
 .fini_array     0x00003e9c        0x8
  .fini_array    0x00003e9c        0x4 C:/android-ndk-r9/platforms/android-9/arch-arm/usr/lib/crtbegin_so.o
