@@ -43,4 +43,7 @@ deployments
     android-external-jars="lib/android/s3eGameCircle.jar"
     android-external-res="lib/android/res/"
     android-so="lib/android/libs3eGameCircle.so"
+    
+    android-extra-application-manifest="AGCApplicationManifest.xml"
+    android-extra-manifest="AGCManifest.xml"
 }
