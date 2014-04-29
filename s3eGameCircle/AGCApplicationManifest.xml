@@ -18,7 +18,10 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:host="${PACKAGENAME}" android:scheme="amzn" />
+        <!-- Warning: Don't forget to change the hardcoded package name below.
+            Why doesn't "<data android:host="${PACKAGENAME}" android:scheme="amzn" />" work with Marmalade's post-build replacement?
+        -->
+        <data android:host="com.crankshaftgames.sfp" android:scheme="amzn" />
     </intent-filter>
 </activity>
 
